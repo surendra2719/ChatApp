@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css"
 import loginPage from '../src/pages/loginPage';
 import registerPage from "../src/pages/registerPage";
+import dashboardPage from './components/dashboard';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         
             <Route path="/loginpage" component={loginPage}></Route>
             <Route path="/registerPage" component={registerPage}></Route>
+            <Route path="/dashboardPage" component={dashboardPage}></Route>
           </div>
         </Router> 
       </div>

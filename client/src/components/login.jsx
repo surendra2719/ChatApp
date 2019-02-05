@@ -75,7 +75,7 @@ class LoginPage extends React.Component {
         const { formErrors } = this.state;
 
         return (
-            <div className="wrapper">
+            <div className="wrapper" >
                 <div className="form-wrapper">
                        <h1>Login</h1>
                     <form onSubmit={this.handleSubmit} noValidate>
@@ -107,17 +107,23 @@ class LoginPage extends React.Component {
                                 <span className="errorMessage">{formErrors.password}</span>
                             )}
                         </div>
+
                         <div className="createAccount">
                             <button type="submit">submit</button>
                         </div>
-                        <div className="registration">
-                            <button type="submit"
-                
-                            onClick={this.registrationclick}>
-                            registration
+                        <div>
+                            <button  class="button1"
+                           onClick={this.registrationclick}>
+                               registration
                             </button>
                         </div>
+                        <div>
+                     
+                        </div>
                     </form>
+                    <small> 
+                          <a href="forgot  password"> forgot password</a>
+                        </small>
                 </div>
             </div>
         );

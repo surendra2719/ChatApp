@@ -64,11 +64,11 @@ class RegisterPage extends React.Component {
         switch (name) {
             case "firstName":
                 formErrors.firstName =
-                    value.length < 3 ? "minimum 3 characaters required" : "";
+                    value.length < 5 ? "minimum 5 characaters required" : "";
                 break;
             case "lastName":
                 formErrors.lastName =
-                    value.length < 3 ? "minimum 3 characaters required" : "";
+                    value.length < 5 ? "minimum 5 characaters required" : "";
                 break;
             case "email":
                 formErrors.email = emailRegex.test(value)
@@ -77,7 +77,7 @@ class RegisterPage extends React.Component {
                 break;
             case "password":
                 formErrors.password =
-                    value.length < 6 ? "minimum 6 characaters required" : "";
+                    value.length < 9 ? "minimum 6 characaters required" : "";
                 break;
             default:
                 break;
@@ -85,6 +85,10 @@ class RegisterPage extends React.Component {
 
         this.setState({ formErrors, [name]: value }, () => console.log(this.state));
     };
+    registrationclick=e=>{
+        e.preventDefault();
+        window.location.href="loginPage"
+      };
 
     render() {
         const { formErrors } = this.state;
@@ -152,8 +156,13 @@ class RegisterPage extends React.Component {
                             )}
                         </div>
                         <div className="createAccount">
-                            <button type="submit">submit</button>
-                            <small>Already Have an Account?</small>
+                            <button type="submit" title="click on Submit">submit</button>
+                        </div>
+                        <div className="login">
+                            <button type="submit" title="click on Login"
+                            onClick={this.registrationclick}>
+                            login
+                            </button>
                         </div>
                     </form>
                 </div>
