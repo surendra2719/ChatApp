@@ -122,7 +122,7 @@ class LoginPage extends React.Component {
                         </div>
                     </form>
                     <small> 
-                          <a href="forgot  password"> forgot password</a>
+                          <a href="forgotpassword"> forgot password</a>
                         </small>
                 </div>
             </div>
