@@ -1,13 +1,13 @@
 const router = require('./Routes/routes')
 const express = require('express');
 const bodyParser = require('body-parser');
-//const expressValidator = require('express-validator');
+const expressValidator = require('express-validator');
 // create express app
 const app = express();
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
-//app.use(expressValidator());
+app.use(expressValidator());
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 

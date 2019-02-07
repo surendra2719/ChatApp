@@ -1,8 +1,8 @@
 
-
 const userService=require('../Services/user.Services');
+
 exports.registration=(req,res)=>{
-    var responseResult={}
+    var responseResult={};
     userService.registration(req.body,(err,result)=>{
         if(err){
             responseResult.success=false;
@@ -18,6 +18,7 @@ exports.registration=(req,res)=>{
     )
 
 }
+
 exports.login=(req,res)=>{
     var responseResult={};
     userService.login(req.body,(err,result)=>{
@@ -33,5 +34,4 @@ exports.login=(req,res)=>{
         }
     }
     )
-
 }

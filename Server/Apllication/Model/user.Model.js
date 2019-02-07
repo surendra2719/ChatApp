@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const UserSchema = mongoose.Schema({
-    FirstName: {
+    firstName: {
         type: String
     },
-    LastName: {
+    lastName: {
         type: String
     },
-    Email: {
+    email: {
         type: String
     },
-    Password: {
+    password: {
         type: String
     },
 }, {
@@ -20,13 +20,13 @@ const UserSchema = mongoose.Schema({
 
 function userModel() {}
 var user = mongoose.model('user', UserSchema);
-function hash(Password) {
-    var hash = bcrypt.hashSync(Password, saltRounds);
+function hash(password) {
+    var hash = bcrypt.hashSync(password, saltRounds);
     return hash;
 }
 userModel.prototype.registration = (body, callback) => {
     user.find({
-        "Email": body.Email
+        "email": body.email
     }, (err, data) => {
         if (err) {
             console.log("Error in registration");
@@ -36,10 +36,10 @@ userModel.prototype.registration = (body, callback) => {
             callback("User already present")
         } else {
             const newUser = new user({
-                "FirstName": body.FirstName,
-                "LastName": body.LastName,
-                "Email": body.Email,
-                "Password": hash(body.Password)
+                "firstName": body.firstName,
+                "lastName": body.lastName,
+                "email": body.email,
+                "password": hash(body.password)
             });
             newUser.save((err, result) => {
                 if (err) {
@@ -55,14 +55,14 @@ userModel.prototype.registration = (body, callback) => {
 }
 userModel.prototype.login = (body, callback) => {
     user.findOne({
-        "Email": body.Email
+        "email": body.email
     }, (err, data) => {
         // console.log(data);
         if (err) {
             callback(err);
         } else if (data != null) {
              //console.log(data);
-            bcrypt.compare(body.Password, data.Password).then(function (res) {
+            bcrypt.compare(body.password, data.password).then(function (res) {
                 if (res) {
                     console.log("login succesfully");
                     callback(null, res);

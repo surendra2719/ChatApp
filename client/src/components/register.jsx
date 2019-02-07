@@ -171,4 +171,4 @@ class RegisterPage extends React.Component {
     }
 }
 
-export default RegisterPage;
+export default RegisterPage; 
