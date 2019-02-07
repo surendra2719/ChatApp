@@ -1,6 +1,9 @@
 
 import React from "react";
 import '../App.css';
+import {userRegister} from "../services/userServices";
+import { ToastContainer,toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import '../pages/registerPage';
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -35,7 +38,8 @@ class RegisterPage extends React.Component {
                 firstName: "",
                 lastName: "",
                 email: "",
-                password: ""
+                password: "",
+                toast:false
             }
         };
     }
@@ -44,20 +48,17 @@ class RegisterPage extends React.Component {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            console.log(`
-        --SUBMITTING--
-        First Name: ${this.state.firstName}
-        Last Name: ${this.state.lastName}
-        Email: ${this.state.email}
-        Password: ${this.state.password}
-      `);
+         
+            userRegister(this.state.firstName,this.state.lastName,this.state.email,this.state.password)
         } else {
-            console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+           
+            toast("FORM INVALID - DISPLAY ERROR MESSAGE");
         }
     };
 
     handleChange = e => {
         e.preventDefault();
+        
         const { name, value } = e.target;
         let formErrors = { ...this.state.formErrors };
 
@@ -77,13 +78,13 @@ class RegisterPage extends React.Component {
                 break;
             case "password":
                 formErrors.password =
-                    value.length < 9 ? "minimum 6 characaters required" : "";
+                    value.length < 6 ? "minimum 6 characaters required" : "";
                 break;
             default:
                 break;
         }
-
         this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+       
     };
     registrationclick=e=>{
         e.preventDefault();
@@ -156,7 +157,9 @@ class RegisterPage extends React.Component {
                             )}
                         </div>
                         <div className="createAccount">
-                            <button type="submit" title="click on Submit">submit</button>
+                            <button  type="submit" title="click on Submit"
+                            onClick={this.handleSubmit}>
+                            submit</button>
                         </div>
                         <div className="login">
                             <button type="submit" title="click on Login"
@@ -166,9 +169,11 @@ class RegisterPage extends React.Component {
                         </div>
                     </form>
                 </div>
+                <ToastContainer/>
             </div>
         );
     }
 }
 
+export {RegisterPage}
 export default RegisterPage; 

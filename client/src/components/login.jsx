@@ -2,6 +2,7 @@
 import React from "react";
 import '../App.css';
 import "../pages/loginPage";
+import {userLogin} from "../services/userServices";
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -37,10 +38,7 @@ class LoginPage extends React.Component {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            console.log(`
-        Email: ${this.state.email}
-        Password: ${this.state.password}
-      `);
+            userLogin(this.state.email,this.state.password)
         } else {
             console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
         }
@@ -71,6 +69,10 @@ class LoginPage extends React.Component {
      e.preventDefault();
      window.location.href="registerPage";
    };
+   Onclick=e=>{
+    e.preventDefault();
+    window.location.href="forgetPassword";
+  };
     render() {
         const { formErrors } = this.state;
 
@@ -109,7 +111,8 @@ class LoginPage extends React.Component {
                         </div>
 
                         <div className="createAccount">
-                            <button type="submit">submit</button>
+                            <button type="submit"
+                             onClick={this.handleSubmit}>submit</button>
                         </div>
                         <div>
                             <button  class="button1"
@@ -122,7 +125,8 @@ class LoginPage extends React.Component {
                         </div>
                     </form>
                     <small> 
-                          <a href="forgotpassword"> forgot password</a>
+                          <a
+                          onClick={this.Onclick} href="forgotpassword"> forgot password</a>
                         </small>
                 </div>
             </div>
@@ -130,4 +134,5 @@ class LoginPage extends React.Component {
     }
 }
 
+export {LoginPage};
 export default LoginPage;
