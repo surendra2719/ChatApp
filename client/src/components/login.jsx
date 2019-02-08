@@ -71,11 +71,11 @@ class LoginPage extends React.Component {
     };
    registrationclick=e=>{
      e.preventDefault();
-     window.location.href="registerPage";
+     this.props.props.history.push("/registerPage");
    };
    Onclick=e=>{
     e.preventDefault();
-    window.location.href="forgetPassword";
+   this.props.props.history.push('/foergetPassword')
   };
     render() {
         const { formErrors } = this.state;

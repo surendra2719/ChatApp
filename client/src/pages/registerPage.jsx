@@ -6,7 +6,7 @@ class RegisterPage extends Component {
 render() {
 return (
 <div className= "form">
-    <Register />
+    <Register props={this.props} />
 </div>
 );
 }

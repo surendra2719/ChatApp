@@ -7,7 +7,7 @@ render() {
 return (
 <div className= "container">
 
-    <Login />
+    <Login props={this.props} />
 </div>
 );
 }

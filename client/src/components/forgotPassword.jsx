@@ -95,7 +95,7 @@ class forgotPassword extends React.Component {
                             <button type="submit" title="click on Submit">submit</button>
                         </div>
                         <div className="login">
-                            <button type="submit" title="click on Login"
+                            <button      class="registerButton" type="submit" title="click on Login"
                             onClick={this.registrationclick}>
                             register
                             </button>

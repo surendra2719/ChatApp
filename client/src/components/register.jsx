@@ -4,7 +4,6 @@ import '../App.css';
 import {userRegister} from "../services/userServices";
 import { ToastContainer,toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import '../pages/registerPage';
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -89,7 +88,7 @@ class RegisterPage extends React.Component {
     };
     registrationclick=e=>{
         e.preventDefault();
-        window.location.href="loginPage"
+        this.props.props.history.push("/loginPage");
       };
 
     render() {
@@ -102,7 +101,7 @@ class RegisterPage extends React.Component {
                     <form onSubmit={this.handleSubmit} noValidate>
 
                         <div className="firstName">
-                            <label htmlFor="firstName">First Name</label>
+                            <label class="labelOne" htmlFor="firstName">First Name</label>
                             <input
                                 className={formErrors.firstName.length > 0 ? "error" : null}
                                 placeholder="First Name"
@@ -116,7 +115,7 @@ class RegisterPage extends React.Component {
                             )}
                         </div>
                         <div className="lastName">
-                            <label htmlFor="lastName">Last Name</label>
+                            <label class="labelOne" htmlFor="lastName">Last Name</label>
                             <input
                                 className={formErrors.lastName.length > 0 ? "error" : null}
                                 placeholder="Last Name"
