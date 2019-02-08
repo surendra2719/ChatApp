@@ -1,7 +1,6 @@
 
 import React from "react";
 import '../App.css';
-import '../pages/forgetPassword';
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
