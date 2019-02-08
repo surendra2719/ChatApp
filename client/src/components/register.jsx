@@ -49,10 +49,11 @@ class RegisterPage extends React.Component {
 
         if (formValid(this.state)) {
          
+            
             userRegister(this.state.firstName,this.state.lastName,this.state.email,this.state.password)
         } else {
            
-            toast("FORM INVALID - DISPLAY ERROR MESSAGE");
+            toast("fields should not be empty");
         }
     };
 

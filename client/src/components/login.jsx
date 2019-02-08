@@ -1,6 +1,8 @@
 
 import React from "react";
 import '../App.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../pages/loginPage";
 import {userLogin} from "../services/userServices";
 const emailRegex = RegExp(
@@ -40,7 +42,9 @@ class LoginPage extends React.Component {
         if (formValid(this.state)) {
             userLogin(this.state.email,this.state.password)
         } else {
-            console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+            toast("email cannot be empty", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
         }
     };
 
@@ -129,6 +133,7 @@ class LoginPage extends React.Component {
                           onClick={this.Onclick} href="forgotpassword"> forgot password</a>
                         </small>
                 </div>
+                < ToastContainer/>
             </div>
         );
     }
