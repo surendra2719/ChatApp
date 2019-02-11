@@ -24,3 +24,36 @@ exports.registration=(data,callback)=>{
     }
     )
 }
+exports.redirect = (decoded, callback) => 
+{
+    userModel.confirmUser(decoded, (err, result) => {
+        if (err) {     
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    })
+}
+exports.getUserEmail = (data, callback) => 
+{
+    userModel.findUserEmail(data, (err, result) => 
+    {     
+        if (err) {     
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    })
+}
+exports.resetPass = (req, callback) => 
+{  
+    userModel.updateUserPassword(req, (err, result) => {
+        if (err) {     
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    })
+}
+
+

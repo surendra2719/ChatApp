@@ -52,7 +52,7 @@ class RegisterPage extends React.Component {
             userRegister(this.state.firstName,this.state.lastName,this.state.email,this.state.password)
         } else {
            
-            toast("fields should not be empty");
+            toast("please enter all the feilds correctly");
         }
     };
 
@@ -83,8 +83,7 @@ class RegisterPage extends React.Component {
             default:
                 break;
         }
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
-       
+        this.setState({ formErrors, [name]: value }, () => console.log(this.state));   
     };
     registrationclick=e=>{
         e.preventDefault();

@@ -1,6 +1,5 @@
 import React from "react";
 import '../App.css';
-
 class DashboardPage extends React.Component {
   
     constructor() {

@@ -14,6 +14,7 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String
     },
+    
 }, {
     timestamps: true
 });
@@ -78,4 +79,47 @@ userModel.prototype.login = (body, callback) => {
     })
 
 }
+userModel.prototype.findUserEmail = (data, callback) => {
+    user.findOne({ "email": data.email }, (err, result) => {
+        if (err) {
+            callback(err);
+        }
+        else {
+            if (result !== null && data.email == result.email) {
+                callback(null, result);
+            }
+            else {
+                callback("incorect mail")
+            }
+        }
+    });
+}
+userModel.prototype.updateUserPassword = (req, callback) => {
+    console.log(' in model--data:--', req.decoded);
+    console.log(' in model--body:--', req.body);
+    let newpassword = bcrypt.hashSync(req.body.password, saltRounds);
+    console.log('new pass bcrypt--',newpassword);
+    user.updateOne({ _id: req.decoded.payload.user_id }, { password: newpassword }, (err, result) => {
+        if (err) {
+            callback(err);
+        }
+        else {
+            callback(null, result);
+        }
+    });
+}
+
+
+userModel.prototype.confirmUser = (data, callback) => {
+    user.updateOne({ _id: data.payload.id }, { is_verified: true }, (err, result) => {
+        if (err) {
+            callback(err);
+        }
+        else {
+            callback(null, result);
+        }
+    });
+}
+
+
 module.exports = new userModel();

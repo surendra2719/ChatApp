@@ -1,6 +1,9 @@
 
 import React from "react";
 import '../App.css';
+import { forgot }  from "../services/userServices";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -21,15 +24,14 @@ const formValid = ({ formErrors, ...rest }) => {
     return valid;
 };
 
-class forgotPassword extends React.Component {
+class forgetPassword extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            recoveryEmail: null,
+            email: null,
             formErrors: {
-    
-            recoveryEmail: "",
+            email: "",
             }
         };
     }
@@ -38,12 +40,11 @@ class forgotPassword extends React.Component {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            console.log(`
-        --SUBMITTING-
-     Recoveryemail ${this.state.recoveryEmail}
-      `);
+
+           forgot(this.state.email);
+    
         } else {
-            console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+            toast("FORM INVALID - DISPLAY ERROR MESSAGE");
         }
     };
 
@@ -53,11 +54,11 @@ class forgotPassword extends React.Component {
         let formErrors = { ...this.state.formErrors };
 
         switch (name) {
-                      case "Recoveryemail":
-                formErrors.email = emailRegex.test(value)
-                    ? ""
-                    : "invalid email address";
-                break;
+                      case "email":
+                      formErrors.email = emailRegex.test(value)
+                      ? ""
+                      : "invalid email address";
+                  break;
             default:
                 break;
         }
@@ -71,7 +72,6 @@ class forgotPassword extends React.Component {
 
     render() {
         const { formErrors } = this.state;
-
         return (
             <div className="wrapper">
                 <div className="form-wrapperRecover">
@@ -80,19 +80,20 @@ class forgotPassword extends React.Component {
                         <div className="email">
                             <label htmlFor="email">Email</label>
                             <input
-                                className={formErrors.recoveryEmail.length > 0 ? "error" : null}
+                                className={formErrors.email.length > 0 ? "error" : null}
                                 placeholder="Email"
                                 type="email"
                                 name="email"
                              noValidate
                                 onChange={this.handleChange}
                             />
-                            {formErrors.recoveryEmail.length > 0 && (
+                            {formErrors.email.length > 0 && (
                                 <span className="errorMessage">{formErrors.email}</span>
                             )}
                         </div>
                         <div className="createAccount">
-                            <button type="submit" title="click on Submit">submit</button>
+                            <button type="submit" title="click on Submit"onClick={this.handleSubmit}>submit</button>
+                            
                         </div>
                         <div className="login">
                             <button      class="registerButton" type="submit" title="click on Login"
@@ -102,9 +103,10 @@ class forgotPassword extends React.Component {
                         </div>
                     </form>
                 </div>
+                < ToastContainer/>
             </div>
         );
     }
 }
-
-export default forgotPassword; 
+export {forgot}
+export default forgetPassword; 

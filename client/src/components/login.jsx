@@ -5,23 +5,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../pages/loginPage";
 import {userLogin} from "../services/userServices";
-const emailRegex = RegExp(
-    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
-
-const formValid = ({ formErrors, ...rest }) => {
-    let valid = true;
-    // validate form errors being empty
-    Object.values(formErrors).forEach(val => {
-        val.length > 0 && (valid = false);
-    });
-    // validate the form was filled out
-    Object.values(rest).forEach(val => {
-        val === null && (valid = false);
-    });
-    return valid;
-};
-
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +25,7 @@ class LoginPage extends React.Component {
         if (formValid(this.state)) {
             userLogin(this.state.email,this.state.password)
         } else {
-            toast("email cannot be empty", {
+            toast("please enter all the feilds correctly", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
         }
@@ -75,7 +58,7 @@ class LoginPage extends React.Component {
    };
    Onclick=e=>{
     e.preventDefault();
-   this.props.props.history.push('/foergetPassword')
+ window.location.href="forgetPassword"
   };
     render() {
         const { formErrors } = this.state;
@@ -138,6 +121,21 @@ class LoginPage extends React.Component {
         );
     }
 }
+const emailRegex = RegExp(
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
 
+const formValid = ({ formErrors, ...rest }) => {
+    let valid = true;
+    // validate form errors being empty
+    Object.values(formErrors).forEach(val => {
+        val.length > 0 && (valid = false);
+    });
+    // validate the form was filled out
+    Object.values(rest).forEach(val => {
+        val === null && (valid = false);
+    });
+    return valid;
+};
 export {LoginPage};
 export default LoginPage;

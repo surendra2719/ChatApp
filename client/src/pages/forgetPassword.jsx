@@ -6,7 +6,7 @@ class forgotPage extends Component {
         return (
             <div className="container">
 
-                <ForgotPassword props={this.props}/>
+                <ForgotPassword />
 </div>
         );
     }
