@@ -8,13 +8,13 @@ exports.sendEMailFunction = (url) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user:'rockzzzsurendra@gmail.com',
-            pass: '8106232830'
+            user:process.env.email,
+            pass: process.env.password
         },
     });
     const mailOptions = {
-        from:'rockzzzsurendra@gmail.com',        // sender address
-        to: 'rockzzzsurendra@gmail.com',   // list of receivers
+        from:process.env.email,        // sender address
+        to: process.env.email,   // list of receivers
         subject: 'node.js send mail',       // Subject line
         text: 'Your Email verifaction link is:\n\n'+url 
     };

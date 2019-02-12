@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import '../App.css';
 import Dashboard from "../components/dashboard";
-import AppBar from '@material-ui/core/AppBar';
 
 
-class Dashboardpage  extends Component {
-render() {
-return (
-<div className= "form">
-<AppBar class="appbar" position="static">WELCOME TO CHATAPP
+class Dashboardpage extends Component {
+  render() {
+    return (
+      <div>
+      <Dashboard props={this.props} />
 
-    </AppBar>
-        
-    <Dashboard />
- 
-</div>
-);
-}
+    </div>
+    );
+  }
 }
 export default Dashboardpage;

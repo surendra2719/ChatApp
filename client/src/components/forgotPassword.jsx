@@ -42,7 +42,10 @@ class forgetPassword extends React.Component {
         if (formValid(this.state)) {
 
            forgot(this.state.email);
-    
+            console.log(`
+        --SUBMITTING-
+    email ${this.state.email}
+      `);
         } else {
             toast("FORM INVALID - DISPLAY ERROR MESSAGE");
         }

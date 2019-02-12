@@ -2,6 +2,7 @@ const router = require('./Routes/routes')
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+
 // create express app
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(expressValidator());
 app.use(bodyParser.json())
 
 app.use('/',router);
+require('dotenv').config()
 
 // Configuring the database
 const dbConfig = require('./Config/db.Config');

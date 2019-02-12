@@ -108,8 +108,6 @@ userModel.prototype.updateUserPassword = (req, callback) => {
         }
     });
 }
-
-
 userModel.prototype.confirmUser = (data, callback) => {
     user.updateOne({ _id: data.payload.id }, { is_verified: true }, (err, result) => {
         if (err) {

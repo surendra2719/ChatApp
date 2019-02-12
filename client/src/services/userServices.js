@@ -73,7 +73,7 @@ function reset(password,token) {
     .then(function (response) {
         console.log (response)
         toast('Password changed successfully');
-            window.location.href = '/login'
+            window.location.href = '/loginPage'
     })
     .catch(function (err) {
         console.log(err);
