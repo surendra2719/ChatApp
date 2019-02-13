@@ -47,12 +47,15 @@ exports.getUser = (req, res) => {
         else {
             responseResult.success = true;
             responseResult.result = result;
+
             const payload = {
                 user_id: responseResult.result._id
             }
             console.log(payload);
             const obj = util.GenerateToken(payload);
-            const url = `http://localhost:3000/resetpassword/${obj.token}`;
+            console.log("controller obj",obj);
+            
+            const url = `http://localhost:3000/resetPassword/${obj.token}`;
             sentMail.sendEMailFunction(url);
             //Send email using this token generated
             res.status(200).send(url);

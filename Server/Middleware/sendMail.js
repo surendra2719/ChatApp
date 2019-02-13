@@ -9,7 +9,7 @@ exports.sendEMailFunction = (url) => {
         service: 'gmail',
         auth: {
             user:process.env.email,
-            pass: process.env.password
+            pass:process.env.password
         },
     });
     const mailOptions = {

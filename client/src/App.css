@@ -410,3 +410,24 @@ input[type=password] input[type=text] {
   border-bottom: 1px solid rgba(0, 0, 0, 0.42);
   pointer-events: none;
 }
+#Icon{
+  margin-Left: 41px
+}
+#dashbutton{
+  color:#e3e3f3 
+}
+.senddashlabel {
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+  color:#e3e3f3 
+}
+#dashsendButton{
+  color: #fff;
+  margin-left: 618px;
+  background-color:red;
+  margin-bottom: 41px;
+  margin-top: -3%;
+
+}

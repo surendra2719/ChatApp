@@ -23,7 +23,18 @@ class LoginPage extends React.Component {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            userLogin(this.state.email,this.state.password)
+          userLogin(this.state.email,this.state.password)
+          .then((res)=>{
+              console.log("login  responce ",res);
+              
+              this.props.props.history.push("/dashboardPage")
+          })
+          .catch(function(err)
+           {
+               console.log(err);
+             toast("Login unsuccessful!!");
+          });
+        
         } else {
             toast("please enter all the feilds correctly", {
                 position: toast.POSITION.BOTTOM_CENTER
@@ -58,7 +69,7 @@ class LoginPage extends React.Component {
    };
    Onclick=e=>{
     e.preventDefault();
- window.location.href="forgetPassword"
+ this.props.props.history.push("/forgetPassword")
   };
     render() {
         const { formErrors } = this.state;

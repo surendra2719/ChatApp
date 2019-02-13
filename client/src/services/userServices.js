@@ -3,46 +3,46 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function userRegister(firstName,lastName,email,password){
-    axios.post('/registration',
+  return  axios.post('/registration',
     {
        firstName:firstName,
        lastName:lastName,
        email:email,
        password:password
     })
-    .then(function(response)
-    {
-        console.log(response);
-        toast("Registered Successfully!!");
-        window.location.href='/loginPage';
+    // .then(function(response)
+    // {
+    //     console.log(response);
+    //     toast("Registered Successfully!!");
+    //     window.location.href='/loginPage';
 
-    })
-    .catch(function(err)
-    {
-        console.log(err);
-        toast("User with email id already exists!!");
-    })
+    // })
+    // .catch(function(err)
+    // {
+    //     console.log(err);
+    //     toast("User with email id already exists!!");
+    // })
 }
 
 function userLogin(email,password){
-    axios.post('/login',
+    return axios.post('/login',
     {
           email:email,
         password:password
     })
-    .then(function(response)
-    {
+    // .then(function(response)
+    // {
      
-        console.log(response);
-        toast("Login Successfully!!");
-        window.location.href='/dashboardPage';
+    //     console.log(response);
+    //     toast("Login Successfully!!");
+    //     window.location.href='/dashboardPage';
 
-    })
-    .catch(function(err)
-    {
-        console.log(err);
-        toast("Login unsuccessful!!");
-    });
+    // })
+    // .catch(function(err)
+    // {
+    //     console.log(err);
+    //     toast("Login unsuccessful!!");
+    // });
 }
 function forgot(email) {
     axios.post('/verifyUser',
@@ -66,19 +66,19 @@ function reset(password,token) {
     console.log('inside reset paswd password--',password);
     console.log('inside reset paswd token--',token);
     
-    axios.post(`/resetpassword/${token}`,{'password': password},{
+ return  axios.post(`/resetpassword/${token}`,{'password': password},{
      headers: {
         'token': token
     }})
-    .then(function (response) {
-        console.log (response)
-        toast('Password changed successfully');
-            window.location.href = '/loginPage'
-    })
-    .catch(function (err) {
-        console.log(err);
-        toast('Please Try Again..');
-    });
+    // .then(function (response) {
+    //     console.log (response)
+    //     toast('Password changed successfully');
+    //         window.location.href = '/loginPage'
+    // })
+    // .catch(function (err) {
+    //     console.log(err);
+    //     toast('Please Try Again..');
+    // });
 }
 
 

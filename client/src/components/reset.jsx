@@ -3,6 +3,7 @@ import React from "react";
 import '../App.css';
 import { reset } from '../services/userServices';
 import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 class ResetPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -26,6 +27,12 @@ class ResetPassword extends React.Component {
             console.log("resetpassComponent--Current url is--:",current_url);
             console.log("resetpassComponent--Token is--:",verify_user_token);
               reset(this.state.password, verify_user_token)
+              .then((res)=>{
+                  this.props.props.history.push("/loginPage");
+              })
+              .catch((err)=>{
+                  toast("plz try again")
+              })
 
     };
 
@@ -57,7 +64,7 @@ class ResetPassword extends React.Component {
 
         return (
             <div className="wrapper" >
-                <div className="form-wrapperreset">
+                <div className="form-wrapperRecover">
                        <h1>Reset</h1>
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className="password">

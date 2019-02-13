@@ -42,6 +42,7 @@ class RegisterPage extends React.Component {
             }
         };
     }
+    
 
     handleSubmit = e => {
         e.preventDefault();
@@ -50,6 +51,15 @@ class RegisterPage extends React.Component {
          
             
             userRegister(this.state.firstName,this.state.lastName,this.state.email,this.state.password)
+            .then((res)=>{
+                console.log("reg page");
+                this.props.props.history.push("/loginPage")
+            })
+            .catch((err)=>{
+              
+
+                toast("user id is already exsists")
+            });
         } else {
            
             toast("please enter all the feilds correctly");
