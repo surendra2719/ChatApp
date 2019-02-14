@@ -17,7 +17,6 @@ exports.registration=(req,res)=>{
         }
     }
     )
-
 }
 exports.login=(req,res)=>{
     var responseResult={};
@@ -35,7 +34,6 @@ exports.login=(req,res)=>{
     }
     )
 }
-
 exports.getUser = (req, res) => {
     var responseResult = {};
     userService.getUserEmail(req.body, (err, result) => {
@@ -81,7 +79,6 @@ exports.sendResponse = (req, res) => {
         }
     })
 }
-
 exports.setPassword = (req, res) => {
     var responseResult = {};
     userService.resetPass(req, (err, result) => {
@@ -98,3 +95,18 @@ exports.setPassword = (req, res) => {
         }
     })
 }
+module.exports.getAllUsers= (req,res) => {
+    var responseResult = {};
+    userService.getAllUsers((err, result) => {
+        if (err) {
+            responseResult.success = false;
+            responseResult.error = err;
+            res.status(500).send(responseResult)
+        }
+        else {
+            responseResult.success = true;
+            responseResult.result = result;
+            res.status(200).send(responseResult);
+        }
+    })
+} 

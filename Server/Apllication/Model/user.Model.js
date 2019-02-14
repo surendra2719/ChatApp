@@ -118,6 +118,14 @@ userModel.prototype.confirmUser = (data, callback) => {
         }
     });
 }
-
-
+userModel.prototype.getAllUsers = (callback) => {
+    user.find({},(err, result) => {
+        if (err) {
+            callback(err);
+        }
+        else {
+            callback(null, result);
+        }
+    });
+}
 module.exports = new userModel();

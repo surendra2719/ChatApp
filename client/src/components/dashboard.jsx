@@ -1,15 +1,18 @@
 import React from "react";
 import '../App.css';
-import TextField from '@material-ui/core/TextField';
+//import TextField from '@material-ui/core/TextField';
+import {TextField,MenuItem  } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import "../App.css";
 import { chatServices, chatDisplay, userChatArray } from "../services/chatservices";
-//import MessageDisplay from './messagedisplay';
+import MessageDisplay from './messagedisplay';
+//import io from 'socket.io-client';
+
 export default class DashboardPage extends React.Component {
     constructor(props) {
         super(props);
+        //const socket =io.connect('http://localhost:4000')
         this.state = {
             onlineUser: [],
             MsgArray: [],
@@ -26,7 +29,7 @@ export default class DashboardPage extends React.Component {
                 this.setState({
                     onlineUser: result.data.result
                 })
-                // console.log("users", result.data.result);
+                console.log("users", result.data.result);
             })
             .catch((error) => {
                 alert(error)
@@ -44,7 +47,6 @@ export default class DashboardPage extends React.Component {
                 alert(error)
             });
     }
-
     handleMessage = (e) => {
         this.setState({ message: e.target.value });
     }
@@ -74,6 +76,13 @@ export default class DashboardPage extends React.Component {
     this.props.props.history.push('/loginPage');
   }
   render() {
+      const loginUsers= this.state.onlineUser.map((key)=>{
+        if (key.email !== localStorage.getItem('Sender')) {
+            return (
+                <MenuItem onClick={(event) => this.handleClick(key, event)}>{key.email}</MenuItem>
+            )
+        }
+    });
     return (
 
       <div>
@@ -86,9 +95,13 @@ export default class DashboardPage extends React.Component {
         </div >
         <div className="div1">
           <label>users</label>
+          <div>{loginUsers}</div>
         </div>
         <div className="div2" >
-  
+           <br/>
+           <MessageDisplay
+           MsgArray={this.state.MsgArray}
+           receiverId={this.state.Receiver}/>
         </div>
         
         <div>
@@ -96,7 +109,9 @@ export default class DashboardPage extends React.Component {
             <TextField
               id=" textfieldInput"
               className="textField"
-              margin="normal"></TextField>
+              margin="normal"
+              value={this.state.message}
+              onChange={this.handleMessage}></TextField>
           </form>
         </div>
         <div>

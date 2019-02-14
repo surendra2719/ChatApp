@@ -8,6 +8,6 @@ router.post('/registration',userController.registration);
 router.post('/verifyUser', userController.getUser);
 router.post('/resetpassword/:token', loginMiddleware.checkToken,userController.setPassword);
 router.post('/addMessage',chatControllers.addMessage);
-//router.get('/getAllUsers',userController.getAllUsers);
+router.get('/getAllUsers',userController.getAllUsers);
 router.get('/getAllChats',chatControllers.getAllUserChats);
 module.exports=router;

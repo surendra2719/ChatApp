@@ -55,5 +55,15 @@ exports.resetPass = (req, callback) =>
         }
     })
 }
-
+exports.getAllUsers=(data,callback)=>{
+    userModel.getAllUsers(data,(err,result)=>{
+        if(err){
+            callback(err);
+        }
+            else{
+            callback(null,result);
+        }    
+    }
+    )
+}
 

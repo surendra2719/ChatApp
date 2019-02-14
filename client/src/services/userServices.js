@@ -63,9 +63,7 @@ function forgot(email) {
 }
 
 function reset(password,token) {
-    console.log('inside reset paswd password--',password);
-    console.log('inside reset paswd token--',token);
-    
+     
  return  axios.post(`/resetpassword/${token}`,{'password': password},{
      headers: {
         'token': token
