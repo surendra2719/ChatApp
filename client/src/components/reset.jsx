@@ -9,8 +9,8 @@ class ResetPassword extends React.Component {
         super(props);
 
         this.state = {
-           password: null,
-             conformpassword: null,
+            password: null,
+            conformpassword: null,
             formErrors: {
                 password: "",
                 conformpassword: ""
@@ -20,19 +20,19 @@ class ResetPassword extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-            
-            let current_url = window.location.pathname;
-            let verify_user_token = current_url.substr(15);
 
-            console.log("resetpassComponent--Current url is--:",current_url);
-            console.log("resetpassComponent--Token is--:",verify_user_token);
-              reset(this.state.password, verify_user_token)
-              .then((res)=>{
-                  this.props.props.history.push("/loginPage");
-              })
-              .catch((err)=>{
-                  toast("plz try again")
-              })
+        let current_url = window.location.pathname;
+        let verify_user_token = current_url.substr(15);
+
+        console.log("resetpassComponent--Current url is--:", current_url);
+        console.log("resetpassComponent--Token is--:", verify_user_token);
+        reset(this.state.password, verify_user_token)
+            .then((res) => {
+                this.props.props.history.push("/loginPage");
+            })
+            .catch((err) => {
+                toast("plz try again")
+            })
 
     };
 
@@ -42,9 +42,9 @@ class ResetPassword extends React.Component {
         let formErrors = { ...this.state.formErrors };
         switch (name) {
             case "password":
-            formErrors.password =
-            value.length < 6 ? "minimum 6 characaters required" : "";
-        break;
+                formErrors.password =
+                    value.length < 6 ? "minimum 6 characaters required" : "";
+                break;
             case "password1":
                 formErrors.conformpassword =
                     value.length < 6 ? "minimum 6 characaters required" : "";
@@ -53,19 +53,19 @@ class ResetPassword extends React.Component {
                 break;
         }
 
-       this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
     };
-   Onclick=e=>{
-    e.preventDefault();
+    Onclick = e => {
+        e.preventDefault();
 
-  };
+    };
     render() {
         const { formErrors } = this.state;
 
         return (
             <div className="wrapper" >
                 <div className="form-wrapperRecover">
-                       <h1>Reset</h1>
+                    <h1>Reset</h1>
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className="password">
                             <label htmlFor="password">new password</label>
@@ -74,7 +74,7 @@ class ResetPassword extends React.Component {
                                 placeholder="password"
                                 type="password"
                                 name="password"
-                             noValidate
+                                noValidate
                                 onChange={this.handleChange}
                             />
                             {formErrors.password.length > 0 && (
@@ -97,15 +97,15 @@ class ResetPassword extends React.Component {
                         </div>
                         <div className="createAccount">
                             <button type="submit"
-                             onClick={this.handleSubmit}>submit</button>
+                                onClick={this.handleSubmit}>submit</button>
                         </div>
                     </form>
                 </div>
-           
+
             </div>
         );
     }
 }
 
-export{reset}
+export { reset }
 export default ResetPassword;

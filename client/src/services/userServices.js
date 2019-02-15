@@ -2,14 +2,14 @@
 import axios from 'axios';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function userRegister(firstName,lastName,email,password){
-  return  axios.post('/registration',
-    {
-       firstName:firstName,
-       lastName:lastName,
-       email:email,
-       password:password
-    })
+function userRegister(firstName, lastName, email, password) {
+    return axios.post('/registration',
+        {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password
+        })
     // .then(function(response)
     // {
     //     console.log(response);
@@ -24,15 +24,15 @@ function userRegister(firstName,lastName,email,password){
     // })
 }
 
-function userLogin(email,password){
+function userLogin(email, password) {
     return axios.post('/login',
-    {
-          email:email,
-        password:password
-    })
+        {
+            email: email,
+            password: password
+        })
     // .then(function(response)
     // {
-     
+
     //     console.log(response);
     //     toast("Login Successfully!!");
     //     window.location.href='/dashboardPage';
@@ -46,28 +46,29 @@ function userLogin(email,password){
 }
 function forgot(email) {
     axios.post('/verifyUser',
-    {
-        email:email
-    })
-    .then(function (response) {
-        console.log('Inside forgetPassword response is--',response.data);
-        const token1 = response.data;
-        const token2 = token1.substring(34)
-        localStorage.setItem('verifyUserToken', token2);
-        toast(' plz check your email..')
-    })
-    .catch(function (err) {
-        console.log(err);
-        toast('User Not Found..');
-    });
+        {
+            email: email
+        })
+        .then(function (response) {
+            console.log('Inside forgetPassword response is--', response.data);
+            const token1 = response.data;
+            const token2 = token1.substring(34)
+            localStorage.setItem('verifyUserToken', token2);
+            toast(' plz check your email..')
+        })
+        .catch(function (err) {
+            console.log(err);
+            toast('User Not Found..');
+        });
 }
 
-function reset(password,token) {
-     
- return  axios.post(`/resetpassword/${token}`,{'password': password},{
-     headers: {
-        'token': token
-    }})
+function reset(password, token) {
+
+    return axios.post(`/resetpassword/${token}`, { 'password': password }, {
+        headers: {
+            'token': token
+        }
+    })
     // .then(function (response) {
     //     console.log (response)
     //     toast('Password changed successfully');
@@ -81,7 +82,7 @@ function reset(password,token) {
 
 
 
-export{
+export {
     userRegister,
     userLogin,
     forgot,

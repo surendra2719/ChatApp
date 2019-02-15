@@ -26,7 +26,7 @@ class LoginPage extends React.Component {
           userLogin(this.state.email,this.state.password)
           .then((res)=>{
               console.log("login  responce ",res);
-              
+              localStorage.setItem('Sender',this.state.email)
               this.props.props.history.push("/dashboardPage")
           })
           .catch(function(err)

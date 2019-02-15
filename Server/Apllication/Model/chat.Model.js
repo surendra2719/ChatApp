@@ -18,7 +18,7 @@ var chatSchema = new mongoSchema({
     timestamps: true
 });
 function chatModel() {}
-var chat = mongoose.model('chatInfo', chatSchema);
+var chat = mongoose.model('chat', chatSchema);
 chatModel.prototype.addMessage = (chatData, callback) => {
     console.log('chatData model-->', chatData);
     const newMsg = new chat({

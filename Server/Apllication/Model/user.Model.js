@@ -14,12 +14,12 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String
     },
-    
-}, {
-    timestamps: true
-});
 
-function userModel() {}
+}, {
+        timestamps: true
+    });
+
+function userModel() { }
 var user = mongoose.model('user', UserSchema);
 function hash(password) {
     var hash = bcrypt.hashSync(password, saltRounds);
@@ -62,7 +62,7 @@ userModel.prototype.login = (body, callback) => {
         if (err) {
             callback(err);
         } else if (data != null) {
-             //console.log(data);
+            //console.log(data);
             bcrypt.compare(body.password, data.password).then(function (res) {
                 if (res) {
                     console.log("login succesfully");
@@ -98,7 +98,7 @@ userModel.prototype.updateUserPassword = (req, callback) => {
     console.log(' in model--data:--', req.decoded);
     console.log(' in model--body:--', req.body);
     let newpassword = bcrypt.hashSync(req.body.password, saltRounds);
-    console.log('new pass bcrypt--',newpassword);
+    console.log('new pass bcrypt--', newpassword);
     user.updateOne({ _id: req.decoded.payload.user_id }, { password: newpassword }, (err, result) => {
         if (err) {
             callback(err);
@@ -119,7 +119,7 @@ userModel.prototype.confirmUser = (data, callback) => {
     });
 }
 userModel.prototype.getAllUsers = (callback) => {
-    user.find({},(err, result) => {
+    user.find({}, (err, result) => {
         if (err) {
             callback(err);
         }

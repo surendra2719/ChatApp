@@ -1,7 +1,7 @@
 
 import React from "react";
 import '../App.css';
-import { forgot }  from "../services/userServices";
+import { forgot } from "../services/userServices";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const emailRegex = RegExp(
@@ -31,7 +31,7 @@ class forgetPassword extends React.Component {
         this.state = {
             email: null,
             formErrors: {
-            email: "",
+                email: "",
             }
         };
     }
@@ -41,7 +41,7 @@ class forgetPassword extends React.Component {
 
         if (formValid(this.state)) {
 
-           forgot(this.state.email);
+            forgot(this.state.email);
             console.log(`
         --SUBMITTING-
     email ${this.state.email}
@@ -57,21 +57,21 @@ class forgetPassword extends React.Component {
         let formErrors = { ...this.state.formErrors };
 
         switch (name) {
-                      case "email":
-                      formErrors.email = emailRegex.test(value)
-                      ? ""
-                      : "invalid email address";
-                  break;
+            case "email":
+                formErrors.email = emailRegex.test(value)
+                    ? ""
+                    : "invalid email address";
+                break;
             default:
                 break;
         }
 
         this.setState({ formErrors, [name]: value }, () => console.log(this.state));
     };
-    registrationclick=e=>{
+    registrationclick = e => {
         e.preventDefault();
-        window.location.href="registerPage"
-      };
+        window.location.href = "registerPage"
+    };
 
     render() {
         const { formErrors } = this.state;
@@ -87,7 +87,7 @@ class forgetPassword extends React.Component {
                                 placeholder="Email"
                                 type="email"
                                 name="email"
-                             noValidate
+                                noValidate
                                 onChange={this.handleChange}
                             />
                             {formErrors.email.length > 0 && (
@@ -95,21 +95,21 @@ class forgetPassword extends React.Component {
                             )}
                         </div>
                         <div className="createAccount">
-                            <button type="submit" title="click on Submit"onClick={this.handleSubmit}>submit</button>
-                            
+                            <button type="submit" title="click on Submit" onClick={this.handleSubmit}>submit</button>
+
                         </div>
                         <div className="login">
-                            <button      class="registerButton" type="submit" title="click on Login"
-                            onClick={this.registrationclick}>
-                            register
+                            <button class="registerButton" type="submit" title="click on Login"
+                                onClick={this.registrationclick}>
+                                register
                             </button>
                         </div>
                     </form>
                 </div>
-                < ToastContainer/>
+                < ToastContainer />
             </div>
         );
     }
 }
-export {forgot}
+export { forgot }
 export default forgetPassword; 

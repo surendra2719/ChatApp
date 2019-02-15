@@ -7,9 +7,9 @@ class Dashboardpage extends Component {
   render() {
     return (
       <div>
-      <Dashboard props={this.props} />
+        <Dashboard props={this.props} />
 
-    </div>
+      </div>
     );
   }
 }

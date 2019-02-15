@@ -1,18 +1,18 @@
 import React from "react";
 import '../App.css';
 //import TextField from '@material-ui/core/TextField';
-import {TextField,MenuItem  } from '@material-ui/core';
+import { TextField, MenuItem } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { chatServices, chatDisplay, userChatArray } from "../services/chatservices";
 import MessageDisplay from './messagedisplay';
-//import io from 'socket.io-client';
+
 
 export default class DashboardPage extends React.Component {
     constructor(props) {
         super(props);
-        //const socket =io.connect('http://localhost:4000')
+
         this.state = {
             onlineUser: [],
             MsgArray: [],
@@ -55,7 +55,7 @@ export default class DashboardPage extends React.Component {
         //Get the sender who has login to the application
         const Sender = localStorage.getItem('Sender')
         this.setState({ Sender: Sender })
-        console.log('Sender is :', Sender);
+        console.log('Sender is :',Sender);
         console.log("Selected receiver: ", this.state.Receiver);
         chatDisplay(Sender, this.state.Receiver, this.state.message);
         this.setState({
@@ -65,64 +65,77 @@ export default class DashboardPage extends React.Component {
         this.setState({ MsgDisplay: this.state.message })
         this.handleClick = this.handleClick.bind(this);
     }
+
+    handlelogout = event => {
+        event.preventDefault();
+        this.props.props.history.push('/loginPage');
+    }
     handleClick = (key, event) => {
         this.setState({ anchorEl: null });
         let Receiver = event.target.textContent;
         this.setState({ Receiver: Receiver });
-        // return receiver;
+
     };
-  handlelogout = event => {
-    event.preventDefault();
-    this.props.props.history.push('/loginPage');
-  }
-  render() {
-      const loginUsers= this.state.onlineUser.map((key)=>{
-        if (key.email !== localStorage.getItem('Sender')) {
-            return (
-                <MenuItem onClick={(event) => this.handleClick(key, event)}>{key.email}</MenuItem>
-            )
-        }
-    });
-    return (
+    render() {
+        console.log('Sender is :', this.state.Sender);
+        console.log("Selected receiver: ", this.state.Receiver);
+        const loginUsers = this.state.onlineUser.map((key) => {
+            console.log("  local data ", localStorage.getItem('Sender'));
 
-      <div>
-        <div className="root">
-          <AppBar position="static">
-            <h1 id="heading">chatapp </h1>
-            <Button id="buttonalter" onClick={this.handlelogout} color="inherit"
-            >Logout</Button>
-          </AppBar>
-        </div >
-        <div className="div1">
-          <label>users</label>
-          <div>{loginUsers}</div>
-        </div>
-        <div className="div2" >
-           <br/>
-           <MessageDisplay
-           MsgArray={this.state.MsgArray}
-           receiverId={this.state.Receiver}/>
-        </div>
-        
-        <div>
-          <form className="container" >
-            <TextField
-              id=" textfieldInput"
-              className="textField"
-              margin="normal"
-              value={this.state.message}
-              onChange={this.handleMessage}></TextField>
-          </form>
-        </div>
-        <div>
-        <Button variant="contained" color="primary" id="dashsendButton">
+            if (key.email !== localStorage.getItem('Sender')) {
+                return (
+                    <MenuItem onClick={(event) => this.handleClick(key, event)}>{key.email}</MenuItem>
+                )
+            }
+            else {
+                return true;
 
-        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-        <Icon class="senddashlabel"  onClick={this.handleSubmit}>send</Icon>
-      </Button>
-        </div>
-      </div>
-    );
-  }
+            };
+        });
+        return (
+
+            <div>
+                <div className="root">
+                    <AppBar position="static">
+                        <h1 id="heading">chatapp </h1>
+                        <Button id="buttonalter" onClick={this.handlelogout} color="inherit"
+                        >Logout</Button>
+                       <p id="loginas">login as  {localStorage.getItem("Sender")}</p>
+                   </AppBar>
+                </div >
+             
+                <div className="div1">
+                    <label>users</label>
+                    <div>{loginUsers}</div>
+                </div>
+                <div className="div2" >
+                       {this.state.Receiver}
+                    <MessageDisplay
+                        MsgArray={this.state.MsgArray}
+                        recieverId={this.state.Receiver} />
+
+
+                </div>
+
+                <div>
+                    <form className="container" >
+                        <TextField
+                            id=" textfieldInput"
+                            className="textField"
+                            margin="normal"
+                            value={this.state.message}
+                            onChange={this.handleMessage}></TextField>
+                    </form>
+                </div>
+                <div>
+                    <Button variant="contained" color="primary" id="dashsendButton">
+
+                        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+                        <Icon class="senddashlabel" onClick={this.handleSubmit}>send</Icon>
+                    </Button>
+                </div>
+            </div>
+        );
+    }
 }
 

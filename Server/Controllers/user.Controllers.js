@@ -1,34 +1,34 @@
 
-const userService=require('../Services/user.Services');
-const util=require('../util/token');
-const sentMail=require('../Middleware/sendMail')
-exports.registration=(req,res)=>{
-    var responseResult={};
-    userService.registration(req.body,(err,result)=>{
-        if(err){
-            responseResult.success=false;
-            responseResult.error=err;
+const userService = require('../Services/user.Services');
+const util = require('../util/token');
+const sentMail = require('../Middleware/sendMail')
+exports.registration = (req, res) => {
+    var responseResult = {};
+    userService.registration(req.body, (err, result) => {
+        if (err) {
+            responseResult.success = false;
+            responseResult.error = err;
             res.status(500).send(responseResult);
         }
-        else{
-            responseResult.success=true;
-            responseResult.result=result;
+        else {
+            responseResult.success = true;
+            responseResult.result = result;
             res.status(200).send(responseResult)
         }
     }
     )
 }
-exports.login=(req,res)=>{
-    var responseResult={};
-    userService.login(req.body,(err,result)=>{
-        if(err){
-            responseResult.success=false;
-            responseResult.error=err;
+exports.login = (req, res) => {
+    var responseResult = {};
+    userService.login(req.body, (err, result) => {
+        if (err) {
+            responseResult.success = false;
+            responseResult.error = err;
             res.status(500).send(responseResult);
         }
-        else{
-            responseResult.success=true;
-            responseResult.result=result;
+        else {
+            responseResult.success = true;
+            responseResult.result = result;
             res.status(200).send(responseResult)
         }
     }
@@ -51,8 +51,8 @@ exports.getUser = (req, res) => {
             }
             console.log(payload);
             const obj = util.GenerateToken(payload);
-            console.log("controller obj",obj);
-            
+            console.log("controller obj", obj);
+
             const url = `http://localhost:3000/resetPassword/${obj.token}`;
             sentMail.sendEMailFunction(url);
             //Send email using this token generated
@@ -64,14 +64,12 @@ exports.sendResponse = (req, res) => {
     var responseResult = {};
     console.log('in user ctrl send token is verified response');
     userService.redirect(req.decoded, (err, result) => {
-        if (err) 
-        {
+        if (err) {
             responseResult.success = false;
             responseResult.error = err;
             res.status(500).send(responseResult)
         }
-        else 
-        {
+        else {
             console.log('in user ctrl token is verified giving response');
             responseResult.success = true;
             responseResult.result = result;
@@ -95,7 +93,7 @@ exports.setPassword = (req, res) => {
         }
     })
 }
-module.exports.getAllUsers= (req,res) => {
+module.exports.getAllUsers = (req, res) => {
     var responseResult = {};
     userService.getAllUsers((err, result) => {
         if (err) {

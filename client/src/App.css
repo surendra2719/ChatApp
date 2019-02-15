@@ -54,7 +54,7 @@ form {
   
   .sender-div{
     margin-left: 630px;
-    background-color: #bfecc6;
+    background-color: #ecbfd4;
     border-radius: 20px;
     width: 300px;
     padding: 10px;
@@ -62,7 +62,7 @@ form {
   }
   
   .receiver-div{
-    background-color: #bfecc6;
+    background-color: #e9db8c;
     border-radius: 20px;
     width: 300px;
     padding: 10px;
@@ -373,14 +373,14 @@ input[type=password] input[type=text] {
   border-color: #0e0e0e;
   width: 29%;
   height: 497px;
-
+ 
   border: 2px solid;
   
 }
 .div2{
   flex-direction: row;
   border-color: #0e0e0e;
-  width: 698px;
+  width: 893px;
   height: 498px;
   margin-left: 30%;
   margin-top: -38.55%;
@@ -430,4 +430,9 @@ input[type=password] input[type=text] {
   margin-bottom: 41px;
   margin-top: -3%;
 
+}
+#loginas {
+  color: inherit;
+  margin-left: -81%;
+  border-color: currentColor;
 }

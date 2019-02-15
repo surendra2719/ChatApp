@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css"
 import loginPage from '../src/pages/loginPage';
 import registerPage from "../src/pages/registerPage";
-import dashboardPage from  './pages/dashboardPage';
+import dashboardPage from './pages/dashboardPage';
 import forgetPassword from "../src/pages/forgetPassword";
 import resetPassword from '../src/pages/resetPassword';
 class App extends Component {
@@ -16,10 +16,10 @@ class App extends Component {
             <Route path="/registerPage" component={registerPage}></Route>
             <Route path="/dashboardPage" component={dashboardPage}></Route>
             <Route path="/forgetPassword" component={forgetPassword}></Route>
-            <Route path ="/resetPassword" component={resetPassword}></Route>
+            <Route path="/resetPassword" component={resetPassword}></Route>
 
           </div>
-        </Router> 
+        </Router>
       </div>
 
     );

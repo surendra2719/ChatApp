@@ -6,7 +6,7 @@ class MessageDisplay extends Component {
                 <div>
                     {key.senderId === localStorage.getItem('Sender') ?
                         (
-                            key.Id === this.props.recieverId ?
+                            key.recieverId === this.props.recieverId ?
                                 (
                                     <div className="sender-div">
                                         <label >{key.senderId}:</label>
@@ -21,7 +21,7 @@ class MessageDisplay extends Component {
                     {
                         key.senderId === this.props.recieverId ? (
                             <div className="receiver-div">
-                                <label >{key.senderId}:</label>
+                                <label >{key.recieverId}</label>
                                 <div >{key.message}</div>
                             </div>
                         ) : (

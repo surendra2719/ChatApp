@@ -1,8 +1,8 @@
 
 import React from "react";
 import '../App.css';
-import {userRegister} from "../services/userServices";
-import { ToastContainer,toast } from "react-toastify";
+import { userRegister } from "../services/userServices";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -38,37 +38,37 @@ class RegisterPage extends React.Component {
                 lastName: "",
                 email: "",
                 password: "",
-                toast:false
+                toast: false
             }
         };
     }
-    
+
 
     handleSubmit = e => {
         e.preventDefault();
 
         if (formValid(this.state)) {
-         
-            
-            userRegister(this.state.firstName,this.state.lastName,this.state.email,this.state.password)
-            .then((res)=>{
-                console.log("reg page");
-                this.props.props.history.push("/loginPage")
-            })
-            .catch((err)=>{
-              
 
-                toast("user id is already exsists")
-            });
+
+            userRegister(this.state.firstName, this.state.lastName, this.state.email, this.state.password)
+                .then((res) => {
+                    console.log("reg page");
+                    this.props.props.history.push("/loginPage")
+                })
+                .catch((err) => {
+
+
+                    toast("user id is already exsists")
+                });
         } else {
-           
+
             toast("please enter all the feilds correctly");
         }
     };
 
     handleChange = e => {
         e.preventDefault();
-        
+
         const { name, value } = e.target;
         let formErrors = { ...this.state.formErrors };
 
@@ -93,12 +93,12 @@ class RegisterPage extends React.Component {
             default:
                 break;
         }
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));   
+        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
     };
-    registrationclick=e=>{
+    registrationclick = e => {
         e.preventDefault();
         this.props.props.history.push("/loginPage");
-      };
+    };
 
     render() {
         const { formErrors } = this.state;
@@ -118,7 +118,7 @@ class RegisterPage extends React.Component {
                                 name="firstName"
                                 noValidate
                                 onChange={this.handleChange}
-                            />  
+                            />
                             {formErrors.firstName.length > 0 && (
                                 <span className="errorMessage">{formErrors.firstName}</span>
                             )}
@@ -144,7 +144,7 @@ class RegisterPage extends React.Component {
                                 placeholder="Email"
                                 type="email"
                                 name="email"
-                             noValidate
+                                noValidate
                                 onChange={this.handleChange}
                             />
                             {formErrors.email.length > 0 && (
@@ -166,23 +166,23 @@ class RegisterPage extends React.Component {
                             )}
                         </div>
                         <div className="createAccount">
-                            <button  type="submit" title="click on Submit"
-                            onClick={this.handleSubmit}>
-                            submit</button>
+                            <button type="submit" title="click on Submit"
+                                onClick={this.handleSubmit}>
+                                submit</button>
                         </div>
                         <div className="login">
                             <button type="submit" title="click on Login"
-                            onClick={this.registrationclick}>
-                            login
+                                onClick={this.registrationclick}>
+                                login
                             </button>
                         </div>
                     </form>
                 </div>
-                <ToastContainer/>
+                <ToastContainer />
             </div>
         );
     }
 }
 
-export {RegisterPage}
+export { RegisterPage }
 export default RegisterPage; 

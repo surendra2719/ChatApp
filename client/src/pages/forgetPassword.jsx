@@ -7,7 +7,7 @@ class forgotPage extends Component {
             <div className="container">
 
                 <ForgotPassword />
-</div>
+            </div>
         );
     }
 }
