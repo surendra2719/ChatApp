@@ -15,9 +15,7 @@ require('dotenv').config()
  */
 const dbConfig = require('./Config/db.Config');
 const mongoose = require('mongoose');
-
 mongoose.Promise = global.Promise;
-
 /**
  * Connecting to the database 
  */ 
@@ -29,11 +27,9 @@ mongoose.connect(dbConfig.url, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
-
 app.get('/', (req, res) => {
     res.json({ "message": "Welcome to chatApp" });
 });
-
 /**
  * listen for requests 
  */ 
@@ -52,8 +48,10 @@ io.sockets.on('connection', function (socket) {
                 console.log("error on server while receiving data");
             }
             else {
-                socket.emit('emitMsg', result);
+                //socket.emit('emitMsg', result);
             }
+            io.emit(req.recieverId,req);
+            io.emit(req.senderId,req);
         })
 
     })

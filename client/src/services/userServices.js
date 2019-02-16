@@ -1,49 +1,36 @@
-
+/**
+ * importing the requirements 
+ */
 import axios from 'axios';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function userRegister(firstName, lastName, email, password) {
-    return axios.post('/registration',
-        {
+/**
+ * fetching registration data and sending request to backend
+ */
+    return axios.post('/registration',{
+        
             firstName: firstName,
             lastName: lastName,
             email: email,
             password: password
         })
-    // .then(function(response)
-    // {
-    //     console.log(response);
-    //     toast("Registered Successfully!!");
-    //     window.location.href='/loginPage';
+    }
 
-    // })
-    // .catch(function(err)
-    // {
-    //     console.log(err);
-    //     toast("User with email id already exists!!");
-    // })
-}
-
+/**
+ * fetching login data and sending request to backend
+ */
 function userLogin(email, password) {
     return axios.post('/login',
         {
             email: email,
             password: password
         })
-    // .then(function(response)
-    // {
-
-    //     console.log(response);
-    //     toast("Login Successfully!!");
-    //     window.location.href='/dashboardPage';
-
-    // })
-    // .catch(function(err)
-    // {
-    //     console.log(err);
-    //     toast("Login unsuccessful!!");
-    // });
+  
 }
+/**
+ * fetching data and sending request to backend
+ */
 function forgot(email) {
     axios.post('/verifyUser',
         {
@@ -61,7 +48,9 @@ function forgot(email) {
             toast('User Not Found..');
         });
 }
-
+/**
+ * fetching data and sending request to backend
+ */
 function reset(password, token) {
 
     return axios.post(`/resetpassword/${token}`, { 'password': password }, {
@@ -69,19 +58,10 @@ function reset(password, token) {
             'token': token
         }
     })
-    // .then(function (response) {
-    //     console.log (response)
-    //     toast('Password changed successfully');
-    //         window.location.href = '/loginPage'
-    // })
-    // .catch(function (err) {
-    //     console.log(err);
-    //     toast('Please Try Again..');
-    // });
 }
-
-
-
+/**
+ * exporting the all data 
+ */
 export {
     userRegister,
     userLogin,

@@ -27,7 +27,7 @@ class LoginPage extends React.Component {
           .then((res)=>{
               console.log("login  responce ",res);
               localStorage.setItem('Sender',this.state.email)
-              this.props.props.history.push("/dashboardPage")
+              this.props.props.history.push("/dashboard")
           })
           .catch(function(err)
            {
@@ -65,7 +65,7 @@ class LoginPage extends React.Component {
     };
    registrationclick=e=>{
      e.preventDefault();
-     this.props.props.history.push("/registerPage");
+     this.props.props.history.push("/register");
    };
    Onclick=e=>{
     e.preventDefault();

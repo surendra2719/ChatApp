@@ -53,7 +53,7 @@ class RegisterPage extends React.Component {
             userRegister(this.state.firstName, this.state.lastName, this.state.email, this.state.password)
                 .then((res) => {
                     console.log("reg page");
-                    this.props.props.history.push("/loginPage")
+                    this.props.props.history.push("/login")
                 })
                 .catch((err) => {
 
@@ -97,7 +97,7 @@ class RegisterPage extends React.Component {
     };
     registrationclick = e => {
         e.preventDefault();
-        this.props.props.history.push("/loginPage");
+        this.props.props.history.push("/login");
     };
 
     render() {

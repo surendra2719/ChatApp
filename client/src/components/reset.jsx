@@ -28,7 +28,7 @@ class ResetPassword extends React.Component {
         console.log("resetpassComponent--Token is--:", verify_user_token);
         reset(this.state.password, verify_user_token)
             .then((res) => {
-                this.props.props.history.push("/loginPage");
+                this.props.props.history.push("/login");
             })
             .catch((err) => {
                 toast("plz try again")

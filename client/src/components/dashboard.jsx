@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { chatServices, chatDisplay, userChatArray } from "../services/chatservices";
 import MessageDisplay from './messagedisplay';
+import io from 'socket.io-client';
+const socket = io.connect('http://localhost:4000')
 
 
 export default class DashboardPage extends React.Component {
@@ -19,7 +21,8 @@ export default class DashboardPage extends React.Component {
             message: "",
             MsgDisplay: "",
             Receiver: '',
-            Sender: ''
+            Sender: '',
+            msg: [],
         }
     }
     componentDidMount() {
@@ -46,6 +49,19 @@ export default class DashboardPage extends React.Component {
             .catch((error) => {
                 alert(error)
             });
+            const Sender = localStorage.getItem('Sender')
+            socket.on(Sender, (result) => {
+                console.log("recieved data to services-->", result);
+
+                const msg=this.state.msg;
+                msg.push(result);
+                this.setState({msg:msg});
+                console.log("this dot msg==========>",result);
+                console.log("msg array=======>",this.state.msg);
+                
+            })
+    
+    
     }
     handleMessage = (e) => {
         this.setState({ message: e.target.value });
@@ -55,9 +71,22 @@ export default class DashboardPage extends React.Component {
         //Get the sender who has login to the application
         const Sender = localStorage.getItem('Sender')
         this.setState({ Sender: Sender })
-        console.log('Sender is :',Sender);
+        console.log('Sender is :', Sender);
         console.log("Selected receiver: ", this.state.Receiver);
-        chatDisplay(Sender, this.state.Receiver, this.state.message);
+
+
+
+
+        //  chatDisplay(Sender, this.state.Receiver, this.state.message);
+
+        let request = {
+            senderId: Sender,
+            recieverId:this.state. Receiver,
+            message: this.state.message,
+        }
+        socket.emit("new_msg", request);
+       
+
         this.setState({
             message: '',
             anchorEl: null
@@ -92,6 +121,30 @@ export default class DashboardPage extends React.Component {
 
             };
         });
+
+const msg=this.state.msg.map((key)=>{
+
+return(
+
+<div> 
+
+<MenuItem>{key.senderId}:{ key.message  }   </MenuItem>
+
+</div>
+
+)
+
+
+})
+
+
+
+
+
+
+
+
+
         return (
 
             <div>
@@ -100,16 +153,17 @@ export default class DashboardPage extends React.Component {
                         <h1 id="heading">chatapp </h1>
                         <Button id="buttonalter" onClick={this.handlelogout} color="inherit"
                         >Logout</Button>
-                       <p id="loginas">login as  {localStorage.getItem("Sender")}</p>
-                   </AppBar>
+                        <p id="loginas">login as  {localStorage.getItem("Sender")}</p>
+                    </AppBar>
                 </div >
-             
+
                 <div className="div1">
                     <label>users</label>
                     <div>{loginUsers}</div>
                 </div>
                 <div className="div2" >
-                       {this.state.Receiver}
+                    {this.state.Receiver}
+                    {msg}
                     <MessageDisplay
                         MsgArray={this.state.MsgArray}
                         recieverId={this.state.Receiver} />
@@ -138,4 +192,3 @@ export default class DashboardPage extends React.Component {
         );
     }
 }
-

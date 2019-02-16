@@ -70,7 +70,7 @@ class forgetPassword extends React.Component {
     };
     registrationclick = e => {
         e.preventDefault();
-        window.location.href = "registerPage"
+        window.location.href = "register"
     };
 
     render() {

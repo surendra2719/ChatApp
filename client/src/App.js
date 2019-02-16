@@ -12,9 +12,9 @@ class App extends Component {
       <div>
         <Router>
           <div className="app">
-            <Route path="/loginPage" component={loginPage}></Route>
-            <Route path="/registerPage" component={registerPage}></Route>
-            <Route path="/dashboardPage" component={dashboardPage}></Route>
+            <Route path="/login" component={loginPage}></Route>
+            <Route path="/register" component={registerPage}></Route>
+            <Route path="/dashboard" component={dashboardPage}></Route>
             <Route path="/forgetPassword" component={forgetPassword}></Route>
             <Route path="/resetPassword" component={resetPassword}></Route>
 

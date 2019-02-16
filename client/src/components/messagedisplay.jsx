@@ -4,9 +4,9 @@ class MessageDisplay extends Component {
         return (
             this.props.MsgArray.map((key) =>
                 <div>
-                    {key.senderId === localStorage.getItem('Sender') ?
+                    {key.recieverId === localStorage.getItem('Sender') ?
                         (
-                            key.recieverId === this.props.recieverId ?
+                            key.senderId === this.props.recieverId ?
                                 (
                                     <div className="sender-div">
                                         <label >{key.senderId}:</label>
@@ -19,9 +19,9 @@ class MessageDisplay extends Component {
                             null
                         )}
                     {
-                        key.senderId === this.props.recieverId ? (
+                        key.recieverId === this.props.recieverId ? (
                             <div className="receiver-div">
-                                <label >{key.recieverId}</label>
+                                <label >{key.senderId}</label>
                                 <div >{key.message}</div>
                             </div>
                         ) : (
